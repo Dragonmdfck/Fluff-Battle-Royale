@@ -1,0 +1,23 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+    public void PlayGame()
+    {
+        // Start the game by loading the main battle scene
+        SceneManager.LoadScene("BattleScene");
+    }
+
+    public void OpenStore()
+    {
+        // Navigate to the in-app store for buying skins and items
+        SceneManager.LoadScene("StoreScene");
+    }
+
+    public void ExitGame()
+    {
+        // Exit the application
+        Application.Quit();
+    }
+}
