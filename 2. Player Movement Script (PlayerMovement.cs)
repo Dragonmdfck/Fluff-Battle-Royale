@@ -1,0 +1,51 @@
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    private float moveSpeed = 5f;
+    private float dashSpeed = 10f;
+    private Vector2 touchStartPos, touchEndPos;
+
+    void Update()
+    {
+        MovePlayer();
+    }
+
+    void MovePlayer()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPos = touch.position;
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                touchEndPos = touch.position;
+                HandleSwipe();
+            }
+
+            Vector3 movement = new Vector3(touch.position.x, touch.position.y, 0);
+            transform.position = Vector3.MoveTowards(transform.position, movement, moveSpeed * Time.deltaTime);
+        }
+    }
+
+    void HandleSwipe()
+    {
+        float swipeLength = (touchEndPos - touchStartPos).magnitude;
+        if (swipeLength > 50f)
+        {
+            Dash();
+        }
+    }
+
+    void Dash()
+    {
+        // Move the player quickly in the direction of the swipe
+        Vector2 direction = (touchEndPos - touchStartPos).normalized;
+        transform.Translate(direction * dashSpeed * Time.deltaTime);
+    }
+}
