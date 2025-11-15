@@ -1,0 +1,50 @@
+using UnityEngine;
+using UnityEngine.Purchasing;
+
+public class StoreManager : MonoBehaviour, IStoreListener
+{
+    private IStoreController storeController;
+    private IExtensionProvider extensionProvider;
+
+    void Start()
+    {
+        if (storeController == null)
+        {
+            InitializePurchasing();
+        }
+    }
+
+    public void InitializePurchasing()
+    {
+        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        builder.AddProduct("com.yourgame.skin1", ProductType.Subscription, new IDs() { { "com.yourgame.skin1", GooglePlay.Name } });
+        UnityPurchasing.Initialize(this, builder);
+    }
+
+    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+    {
+        storeController = controller;
+        extensionProvider = extensions;
+    }
+
+    public void BuySkin()
+    {
+        if (storeController != null)
+        {
+            storeController.InitiatePurchase("com.yourgame.skin1");
+        }
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    {
+        // Handle purchase failure
+    }
+
+    public void OnPurchased(Product product)
+    {
+        if (product.definition.id == "com.yourgame.skin1")
+        {
+            // Give the player the purchased skin
+        }
+    }
+}
