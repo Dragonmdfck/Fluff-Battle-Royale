@@ -1,1 +1,37 @@
+using UnityEngine;
+using UnityEngine.Advertisements;
 
+public class AdManager : MonoBehaviour
+{
+    private string gameId = "1234567";  // Replace with your Unity Ads Game ID
+    private bool testMode = true;
+
+    void Start()
+    {
+        Advertisement.Initialize(gameId, testMode);
+    }
+
+    public void ShowAd()
+    {
+        if (Advertisement.IsReady("rewardedVideo"))
+        {
+            Advertisement.Show("rewardedVideo", new ShowOptions { resultCallback = HandleAdResult });
+        }
+    }
+
+    private void HandleAdResult(ShowResult result)
+    {
+        if (result == ShowResult.Finished)
+        {
+            // Reward the player (e.g., extra lives or coins)
+        }
+        else if (result == ShowResult.Skipped)
+        {
+            // No reward
+        }
+        else if (result == ShowResult.Failed)
+        {
+            // Handle ad failure
+        }
+    }
+}
