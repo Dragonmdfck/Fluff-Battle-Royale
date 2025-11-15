@@ -1,0 +1,37 @@
+FluffBattleRoyale/
+├── Assets/
+│   ├── Scripts/
+│   │   ├── GameManager.cs
+│   │   ├── PlayerController.cs
+│   │   ├── EnemyController.cs
+│   │   ├── BulletController.cs
+│   │   ├── UIManager.cs
+│   │   └── GameOverManager.cs
+│   ├── Prefabs/
+│   │   ├── Player.prefab
+│   │   ├── Enemy.prefab
+│   │   ├── Bullet.prefab
+│   │   └── HealthBar.prefab
+│   ├── Sprites/
+│   │   ├── PlayerSprite.png
+│   │   ├── EnemySprite.png
+│   │   ├── Background.png
+│   │   ├── BulletSprite.png
+│   │   └── HealthBarSprite.png
+│   ├── Scenes/
+│   │   └── MainScene.unity
+│   ├── Animations/
+│   │   ├── PlayerIdle.anim
+│   │   ├── PlayerRun.anim
+│   │   ├── PlayerJump.anim
+│   │   ├── EnemyIdle.anim
+│   │   └── EnemyAttack.anim
+│   ├── Audio/
+│   │   ├── BackgroundMusic.mp3
+│   │   ├── PlayerAttackSound.wav
+│   │   ├── EnemyDeathSound.wav
+│   │   └── BulletSound.wav
+│   └── UI/
+│       ├── StartButton.png
+│       ├── GameOverPanel.png
+│       └── HealthBarUI.png
