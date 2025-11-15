@@ -1,0 +1,47 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    public GameObject player;
+    public float gameTimeLimit = 300f; // 5 minutes
+
+    void Start()
+    {
+        StartCoroutine(GameLoop());
+    }
+
+    IEnumerator GameLoop()
+    {
+        float timer = 0f;
+
+        while (timer < gameTimeLimit)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        EndGame();
+    }
+
+    void EndGame()
+    {
+        // Check win condition (last player standing)
+        if (IsPlayerWinner())
+        {
+            // Show victory screen
+            SceneManager.LoadScene("VictoryScene");
+        }
+        else
+        {
+            // Show defeat screen
+            SceneManager.LoadScene("DefeatScene");
+        }
+    }
+
+    bool IsPlayerWinner()
+    {
+        // Logic to determine if the player is the winner
+        return true;  // Placeholder for winning logic
+    }
+}
